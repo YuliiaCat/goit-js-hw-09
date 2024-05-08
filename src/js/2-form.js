@@ -13,6 +13,11 @@ const formData = {
   message: ""
 };
 
+function updateFormFields() {
+  document.querySelector('input[name="email"]').value = formData.email;
+  document.querySelector('textarea[name="message"]').value = formData.message;
+}
+
 form.addEventListener("input", function (event) {
   if (event.target.name === "email") {
     formData.email = event.target.value.trim();
@@ -29,6 +34,7 @@ if (savedData !== null) {
   const parsedData = JSON.parse(savedData);
   formData.email = parsedData.email;
   formData.message = parsedData.message;
+  updateFormFields();
 }
 
 form.addEventListener("submit", handleSubmit);
@@ -48,7 +54,8 @@ function handleSubmit(event) {
 
   formData.email = "";
   formData.message = "";
-  
+
   errorMessage.style.display = "none";
 }
 
+updateFormFields();
